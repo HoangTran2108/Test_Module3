@@ -76,9 +76,9 @@ public class EmployeeServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Employee existingUser = employeeControllerIpm.selectEmployee(id);
+        Employee existingEmployee = employeeControllerIpm.selectEmployee(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("employee/edit.jsp");
-        request.setAttribute("user", existingUser);
+        request.setAttribute("employee", existingEmployee);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -131,7 +131,7 @@ public class EmployeeServlet extends HttpServlet {
 
     private void updateEmployee(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
-        String eName = request.getParameter("Ename");
+        String eName = request.getParameter("eName");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         String phoneNumber = request.getParameter("phoneNumber");
@@ -151,7 +151,7 @@ public class EmployeeServlet extends HttpServlet {
     }
 
     private void insertEmployee(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        String eName = request.getParameter("Ename");
+        String eName = request.getParameter("eName");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         String phoneNumber = request.getParameter("phoneNumber");
