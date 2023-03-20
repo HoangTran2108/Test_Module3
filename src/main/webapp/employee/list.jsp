@@ -33,12 +33,12 @@
         <c:forEach var="employee" items="${requestScope.listEmployee}">
             <tr>
                 <td><c:out value="${employee.id}"/></td>
-                <td><c:out value="${employee.name}"/></td>
+                <td><c:out value="${employee.eName}"/></td>
                 <td><c:out value="${employee.email}"/></td>
                 <td><c:out value="${employee.address}"/></td>
                 <td><c:out value="${employee.phoneNumber}"/></td>
                 <td><c:out value="${employee.salary}"/></td>
-                <td><c:out value="${employee.department.getdId()}"/></td>
+                <td><c:out value="${employee.department.getdName()}"/></td>
                 <td>
                     <a href="/EmployeeServlet?action=edit&id=${employee.id}">Edit</a>
                     <a href="/EmployeeServlet?action=delete&id=${employee.id}">Delete</a>

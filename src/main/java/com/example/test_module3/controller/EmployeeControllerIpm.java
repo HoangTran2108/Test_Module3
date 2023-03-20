@@ -27,7 +27,7 @@ public class EmployeeControllerIpm implements EmployeeController{
     private static final String DELETE_EMPLOYEE_SQL = "delete from employee where id = ?;";
     private static final String UPDATE_EMPLOYEE_SQL = "update employee set eName = ?,email= ?, address =?, " +
             "phoneNumber = ?, salary = ?, dId = ? where id = ?;";
-    private final String SELECT_ALL = "select * from employeeManager.employee";
+    private final String SELECT_ALL = "select * from employeemanager.employee join department on employee.dId = department.dId";
     @Override
     public void insertEmployee(Employee employee) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_EMPLOYEE_SQL)) {
@@ -57,7 +57,7 @@ public class EmployeeControllerIpm implements EmployeeController{
                 String address = rs.getString("address");
                 String phoneNumber = rs.getString("phoneNumber");
                 double salary = rs.getDouble("salary");
-                int dId = rs.getInt("provinceId");
+                int dId = rs.getInt("dId");
                 Department department = selectDepartment(dId);
                 employee = new Employee(id, eName, email,address, phoneNumber, salary, department);
             }
@@ -81,7 +81,7 @@ public class EmployeeControllerIpm implements EmployeeController{
                     String address = rs.getString("address");
                     String phoneNumber = rs.getString("phoneNumber");
                     double salary = rs.getDouble("salary");
-                    int dId = rs.getInt("provinceId");
+                    int dId = rs.getInt("dId");
                     Department department = selectDepartment(dId);
                     employees.add(new Employee(id, eName, email,address, phoneNumber, salary, department));
                 }
@@ -154,7 +154,7 @@ public class EmployeeControllerIpm implements EmployeeController{
                 String address = rs.getString("address");
                 String phoneNumber = rs.getString("phoneNumber");
                 double salary = rs.getDouble("salary");
-                int dId = rs.getInt("provinceId");
+                int dId = rs.getInt("dId");
                 Department department = selectDepartment(dId);
                 employees.add(new Employee(id, eName, email,address, phoneNumber, salary, department));
             }
